@@ -122,8 +122,8 @@ class Scheduler {
                     this.blockingQueue.enqueue(process)
                 }
                 else {
-                    if (this.boostedProcesses.length > 0) return;
-                    const priority = Math.min(queue.priorityLevel + 1, PRIORITY_LEVELS - 1);
+                    const priority = (this.boostedProcesses.length > 0) ? 0 :
+                                     Math.min(queue.priorityLevel + 1, PRIORITY_LEVELS - 1);
                     // console.log(`priority: ${priority}`);
                     (this._getCPUQueue(priority)).enqueue(process);
                 }
